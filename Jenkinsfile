@@ -14,21 +14,21 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    dockerImage = docker.build("mypythonapp")
+                    dockerImage = docker.build("myapppython")
                 }
             }
         }
         stage('Run Docker Container') {
             steps {
                 script {
-                    dockerImage.run('-d --name aviman')
+                    dockerImage.run('-d --name your-container-name')
                 }
             }
         }
         stage('Show Results') {
             steps {
                 script {
-                    sh 'docker logs aviman'
+                    sh 'docker logs your-container-name'
                 }
             }
         }
@@ -36,8 +36,8 @@ pipeline {
     post {
         always {
             script {
-                sh 'docker stop aviman'
-                sh 'docker rm aviman'
+                sh 'docker stop your-container-name'
+                sh 'docker rm your-container-name'
             }
         }
     }
